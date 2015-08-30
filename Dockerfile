@@ -15,7 +15,6 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # set install packages as variable
 ENV APTLIST="libapache2-mod-php5 \
-php5-apcu \
 php5-gd \
 php5-gmp \
 php5-intl \
@@ -25,7 +24,8 @@ php5-ldap \
 php5-libsmbclient \
 php5-mcrypt \
 php5-mysql \ 
-php5-pgsql"
+php5-pgsql \
+php5-xcache"
 
 # install packages
 RUN apt-get update -q && \
