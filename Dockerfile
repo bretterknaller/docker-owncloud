@@ -15,6 +15,8 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # set install packages as variable
 ENV APTLIST="libapache2-mod-php5 \
+memcached \
+php5-common \
 php5-gd \
 php5-gmp \
 php5-intl \
@@ -24,13 +26,17 @@ php5-ldap \
 php5-libsmbclient \
 php5-mcrypt \
 php5-mysql \ 
-php5-pgsql \
-php5-xcache"
+php5-pgsql"
 
 # install packages
 RUN apt-get update -q && \
 apt-get install \
 $APTLIST -qy && \
+
+# install later version of apcu than in repository
+cd /tmp && \
+wget http://mirrors.kernel.org/ubuntu/pool/universe/p/php-apcu/php5-apcu_4.0.6-1_amd64.deb && \
+dpkg -i php5-apcu_4.0.6-1_amd64.deb && \
 
 # cleanup 
 apt-get clean -y && \
