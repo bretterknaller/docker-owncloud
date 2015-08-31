@@ -3,7 +3,8 @@ FROM linuxserver/baseimage.nginx
 MAINTAINER Mark Burford <sparklyballs@gmail.com>
 
 # set install packages as variable
-ENV APTLIST="memcached \
+ENV APTLIST="ffmpeg \
+memcached \
 nano \
 php5-common \
 php5-curl \
@@ -23,6 +24,7 @@ wget"
 # add repositories
 RUN curl http://download.opensuse.org/repositories/isv:/ownCloud:/community:/8.1/xUbuntu_14.04/Release.key | apt-key add - && \
 sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community:/8.1/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/php5-libsmbclient.list" && \
+add-apt-repository ppa:kirillshkrogalev/ffmpeg-next && \
 
 # install packages
 apt-get update -q && \
