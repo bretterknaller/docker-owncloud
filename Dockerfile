@@ -1,4 +1,4 @@
-FROM linuxserver/baseimage.apache
+FROM linuxserver/baseimage.nginx
 
 MAINTAINER Mark Burford <sparklyballs@gmail.com>
 
@@ -9,14 +9,16 @@ wget -qy && \
 wget -O /tmp/Release.key http://download.opensuse.org/repositories/isv:ownCloud:community:8.1/xUbuntu_14.04/Release.key && \
 apt-key add - < /tmp/Release.key && \
 sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community:/8.1/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/php5-libsmbclient.list" && \
+
 # cleanup
 apt-get clean -y && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # set install packages as variable
-ENV APTLIST="libapache2-mod-php5 \
-memcached \
+ENV APTLIST="memcached \
+nano \
 php5-common \
+php5-curl \
 php5-gd \
 php5-gmp \
 php5-intl \
@@ -46,10 +48,8 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ADD defaults/ /defaults/
 ADD init/ /etc/my_init.d/
 RUN chmod -v +x /etc/service/*/run /etc/my_init.d/*.sh && \
+echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /defaults/nginx-fpm.conf
 
-# set apache mods
-a2enmod headers env dir mime setenvif
-  
 # expose ports
 EXPOSE 80 443
 
