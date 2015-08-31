@@ -2,18 +2,6 @@ FROM linuxserver/baseimage.nginx
 
 MAINTAINER Mark Burford <sparklyballs@gmail.com>
 
-# add repositories
-RUN apt-get update -q && \
-apt-get install \
-wget -qy && \
-wget -O /tmp/Release.key http://download.opensuse.org/repositories/isv:ownCloud:community:8.1/xUbuntu_14.04/Release.key && \
-apt-key add - < /tmp/Release.key && \
-sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community:/8.1/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/php5-libsmbclient.list" && \
-
-# cleanup
-apt-get clean -y && \
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
 # set install packages as variable
 ENV APTLIST="memcached \
 nano \
@@ -28,10 +16,15 @@ php5-ldap \
 php5-libsmbclient \
 php5-mcrypt \
 php5-mysql \ 
-php5-pgsql"
+php5-pgsql \
+wget"
+
+# add repositories
+RUN curl http://download.opensuse.org/repositories/isv:/ownCloud:/community:/8.1/xUbuntu_14.04/Release.key | apt-key add - && \
+sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/community:/8.1/xUbuntu_14.04/ /' >> /etc/apt/sources.list.d/php5-libsmbclient.list" && \
 
 # install packages
-RUN apt-get update -q && \
+apt-get update -q && \
 apt-get install \
 $APTLIST -qy && \
 
