@@ -17,6 +17,7 @@ php5-libsmbclient \
 php5-mcrypt \
 php5-mysql \ 
 php5-pgsql \
+smbclient \
 wget"
 
 # add repositories
