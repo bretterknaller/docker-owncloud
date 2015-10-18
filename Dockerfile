@@ -3,7 +3,12 @@ FROM linuxserver/baseimage.nginx
 MAINTAINER Sparklyballs <sparklyballs@linuxserver.io>
 
 # set install packages as variable
-ENV APTLIST="libpcre3-dev \
+ENV APTLIST="exim4 \
+exim4-base \
+exim4-config \
+exim4-daemon-light \
+heirloom-mailx \
+libpcre3-dev \
 libaio1 \
 libapr1 \
 libaprutil1 \
@@ -31,6 +36,7 @@ php5-pgsql \
 php5-sqlite \
 php-xml-parser \
 smbclient \
+ssl-cert \
 wget"
 
 # add repositories
