@@ -1,6 +1,6 @@
 FROM linuxserver/baseimage.nginx
 
-MAINTAINER Mark Burford <sparklyballs@gmail.com>
+MAINTAINER Sparklyballs <sparklyballs@linuxserver.io>
 
 # set install packages as variable
 ENV APTLIST="memcached \
