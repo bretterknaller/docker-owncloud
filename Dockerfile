@@ -32,7 +32,7 @@ $APTLIST -qy && \
 
 # install later version of apcu than in repository
 pecl channel-update pecl.php.net && \
-pecl install channel://pecl.php.net/APCu-4.0.7
+pecl install channel://pecl.php.net/APCu-4.0.7 && \
 
 # cleanup 
 apt-get clean -y && \
