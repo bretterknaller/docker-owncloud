@@ -49,6 +49,8 @@ apt-get install \
 $APTLIST -qy && \
 
 # install later version of apcu than in repository
+echo "extension=apcu.so" >> /etc/php5/fpm/php.ini && \
+echo "extension=apcu.so" >> /etc/php5/cli/php.ini && \
 pecl channel-update pecl.php.net && \
 pecl install channel://pecl.php.net/APCu-4.0.7 && \
 
@@ -60,9 +62,7 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ADD defaults/ /defaults/
 ADD init/ /etc/my_init.d/
 RUN chmod -v +x /etc/service/*/run /etc/my_init.d/*.sh && \
-echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /defaults/nginx-fpm.conf && \
-echo "extension=apcu.so" >> /etc/php5/fpm/php.ini && \
-echo "extension=apcu.so" >> /etc/php5/cli/php.ini
+echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /defaults/nginx-fpm.conf
 
 # expose ports
 EXPOSE 80 443
