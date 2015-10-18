@@ -44,7 +44,7 @@ ADD init/ /etc/my_init.d/
 RUN chmod -v +x /etc/service/*/run /etc/my_init.d/*.sh && \
 echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /defaults/nginx-fpm.conf && \
 echo "extension=apcu.so" >> /etc/php5/fpm/php.ini && \
-echo "extension=apcu.so" >> /etc/php5/cli/php.ini && \
+echo "extension=apcu.so" >> /etc/php5/cli/php.ini
 
 # expose ports
 EXPOSE 80 443
