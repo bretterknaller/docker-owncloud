@@ -4,6 +4,16 @@ MAINTAINER Sparklyballs <sparklyballs@linuxserver.io>
 
 # set install packages as variable
 ENV APTLIST="libpcre3-dev \
+libaio1 \
+libapr1 \
+libaprutil1 \
+libaprutil1-dbd-sqlite3 \
+libaprutil1-ldap \
+libdbd-mysql-perl \
+libdbi-perl \
+libfreetype6 \
+libmysqlclient18 \
+mysql-common \
 memcached \
 nano \
 php5-curl \
@@ -16,8 +26,10 @@ php5-imap \
 php5-ldap \
 php5-libsmbclient \
 php5-mcrypt \
-php5-mysql \ 
+php5-mysqlnd \
 php5-pgsql \
+php5-sqlite \
+php-xml-parser \
 smbclient \
 wget"
 
