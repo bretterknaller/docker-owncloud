@@ -3,10 +3,11 @@ FROM linuxserver/baseimage.nginx
 MAINTAINER Sparklyballs <sparklyballs@linuxserver.io>
 
 # set install packages as variable
-ENV APTLIST="memcached \
+ENV APTLIST="libpcre3-dev \
+memcached \
 nano \
-php5-common \
 php5-curl \
+php5-dev \
 php5-gd \
 php5-gmp \
 php5-intl \
@@ -30,8 +31,8 @@ apt-get install \
 $APTLIST -qy && \
 
 # install later version of apcu than in repository
-wget -O /tmp/apcu.deb http://mirrors.kernel.org/ubuntu/pool/universe/p/php-apcu/php5-apcu_4.0.7-1build1_amd64.deb && \
-dpkg -i /tmp/apcu.deb && \
+pecl channel-update pecl.php.net && \
+pecl install channel://pecl.php.net/APCu-4.0.7
 
 # cleanup 
 apt-get clean -y && \
