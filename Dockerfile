@@ -30,7 +30,7 @@ apt-get install \
 $APTLIST -qy && \
 
 # install later version of apcu than in repository
-wget -O /tmp/apcu.deb http://mirrors.kernel.org/ubuntu/pool/universe/p/php-apcu/php5-apcu_4.0.6-1_amd64.deb && \
+wget -O /tmp/apcu.deb http://mirrors.kernel.org/ubuntu/pool/universe/p/php-apcu/php5-apcu_4.0.7-1build1_amd64.deb && \
 dpkg -i /tmp/apcu.deb && \
 
 # cleanup 
