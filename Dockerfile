@@ -35,6 +35,7 @@ php5-mysqlnd \
 php5-pgsql \
 php5-sqlite \
 php-xml-parser \
+re2c \
 smbclient \
 ssl-cert \
 wget"
