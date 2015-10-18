@@ -23,7 +23,6 @@ mysql-common \
 memcached \
 nano \
 php5-curl \
-php5-dev \
 php5-gd \
 php5-gmp \
 php5-intl \
@@ -36,10 +35,12 @@ php5-mysqlnd \
 php5-pgsql \
 php5-sqlite \
 php-xml-parser \
-re2c \
 smbclient \
 ssl-cert \
 wget"
+
+ENV BUILD_APTLIST="php5-dev \
+re2c"
 
 # add repositories
 RUN curl http://download.opensuse.org/repositories/isv:/ownCloud:/community:/8.1/xUbuntu_14.04/Release.key | apt-key add - && \
@@ -48,7 +49,7 @@ sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/commun
 # install packages
 RUN apt-get update -q && \
 apt-get install \
-$APTLIST -qy && \
+$APTLIST $BUILD_APTLIST -qy && \
 
 # install later version of apcu than in repository
 git clone https://github.com/krakjoe/apcu.git /tmp/apcu && \
@@ -61,6 +62,9 @@ make test && \
 make install && \
 
 # cleanup 
+apt-get purge -y --remove \
+$BUILD_APTLIST && \
+apt-get -y autoremove && \
 apt-get clean -y && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
