@@ -7,6 +7,7 @@ ENV APTLIST="exim4 \
 exim4-base \
 exim4-config \
 exim4-daemon-light \
+git-core \
 heirloom-mailx \
 libpcre3-dev \
 libaio1 \
@@ -50,10 +51,14 @@ apt-get install \
 $APTLIST -qy && \
 
 # install later version of apcu than in repository
-echo "extension=apcu.so" >> /etc/php5/fpm/php.ini && \
-echo "extension=apcu.so" >> /etc/php5/cli/php.ini && \
-pecl channel-update pecl.php.net && \
-pecl install channel://pecl.php.net/APCu-4.0.7 && \
+git clone https://github.com/krakjoe/apcu.git /tmp/apcu && \
+cd /tmp/apcu && \
+phpize && \
+./configure --with-php-config=/usr/bin/php-config && \
+make && \
+export TEST_PHP_ARGS='-n' && \
+make test && \
+make install && \
 
 # cleanup 
 apt-get clean -y && \
@@ -63,6 +68,10 @@ rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 ADD defaults/ /defaults/
 ADD init/ /etc/my_init.d/
 RUN chmod -v +x /etc/service/*/run /etc/my_init.d/*.sh && \
+
+# configure apcu and fpm to suit owncloud
+echo "extension=apcu.so" >> /etc/php5/fpm/php.ini && \
+echo "extension=apcu.so" >> /etc/php5/cli/php.ini && \
 echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /defaults/nginx-fpm.conf
 
 # expose ports
