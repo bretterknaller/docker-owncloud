@@ -79,7 +79,7 @@ echo "extension=apcu.so" >> /etc/php5/cli/php.ini && \
 echo "env[PATH] = /usr/local/bin:/usr/bin:/bin" >> /defaults/nginx-fpm.conf
 
 # expose ports
-EXPOSE 80 443
+EXPOSE 443
 
 # set volumes
 VOLUME /config /data
