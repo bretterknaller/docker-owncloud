@@ -8,9 +8,7 @@ heirloom-mailx libpcre3-dev libaio1 libapr1 libaprutil1 libaprutil1-dbd-sqlite3 
 libaprutil1-ldap libdbd-mysql-perl libdbi-perl libfreetype6 libmysqlclient18 \
 mysql-common memcached nano php5-curl php5-gd php5-gmp php5-intl php5-imagick \
 php5-imap php5-ldap php5-libsmbclient php5-mcrypt php5-mysqlnd php5-pgsql \
-php5-sqlite php-xml-parser smbclient ssl-cert wget"
-
-ENV BUILD_APTLIST="php5-dev re2c"
+php5-sqlite php-xml-parser smbclient ssl-cert wget php5-dev re2c"
 
 # add repositories
 RUN curl http://download.opensuse.org/repositories/isv:/ownCloud:/community:/8.1/xUbuntu_14.04/Release.key | apt-key add - && \
@@ -19,7 +17,7 @@ sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/commun
 # install packages
 RUN apt-get update -q && \
 apt-get install \
-$APTLIST $BUILD_APTLIST -qy && \
+$APTLIST -qy && \
 
 # install later version of apcu than in repository
 git clone https://github.com/krakjoe/apcu.git /tmp/apcu && \
@@ -32,9 +30,7 @@ make test && \
 make install && \
 
 # cleanup 
-apt-get purge -y --remove \
-$BUILD_APTLIST && \
-apt-get -y autoremove && \
+cd / && \
 apt-get clean -y && \
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
