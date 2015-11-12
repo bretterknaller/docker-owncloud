@@ -2,6 +2,9 @@ FROM linuxserver/baseimage.nginx
 
 MAINTAINER Sparklyballs <sparklyballs@linuxserver.io>
 
+# set owncloud initial install version
+ENV owncloud_ver="8.2.0"
+
 # set install packages as variable
 ENV APTLIST="exim4 exim4-base exim4-config exim4-daemon-light git-core \
 heirloom-mailx libpcre3-dev libaio1 libapr1 libaprutil1 libaprutil1-dbd-sqlite3 \
