@@ -25,6 +25,7 @@ $APTLIST -qy && \
 # install later version of apcu than in repository
 git clone https://github.com/krakjoe/apcu.git /tmp/apcu && \
 cd /tmp/apcu && \
+git checkout v4.0.7 && \ 
 phpize && \
 ./configure --with-php-config=/usr/bin/php-config && \
 make && \
