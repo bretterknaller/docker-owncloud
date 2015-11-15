@@ -10,7 +10,7 @@ ENV APTLIST="exim4 exim4-base exim4-config exim4-daemon-light git-core \
 heirloom-mailx libpcre3-dev libaio1 libapr1 libaprutil1 libaprutil1-dbd-sqlite3 \
 libaprutil1-ldap libdbd-mysql-perl libdbi-perl libfreetype6 libmysqlclient18 \
 mysql-common memcached nano php5-curl php5-gd php5-gmp php5-intl php5-imagick \
-php5-imap php5-ldap php5-libsmbclient php5-mcrypt php5-mysql php5-pgsql \
+php5-imap php5-ldap php5-libsmbclient php5-mcrypt php5-mysqlnd php5-pgsql \
 php5-sqlite php-xml-parser smbclient ssl-cert wget php5-dev re2c"
 
 # add repositories
